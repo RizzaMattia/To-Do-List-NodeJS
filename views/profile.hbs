@@ -2,6 +2,8 @@
 {{> navbar}}
 
 <div class="container mt-5">
+
+
     <!-- Titolo della pagina -->
     <h1 class="display-4 text-secondary">Profile of {{user.username}}</h1>
     <p class="lead text-muted">Manage your data</p>
@@ -23,6 +25,20 @@
             </ul>
         </div>
     </div>
+
+    <!-- Messaggi di errore -->
+    {{#if errorMessage}}
+    <div id="error-message" class="position-absolute alert alert-danger w-50 text-center">
+        {{errorMessage}}
+    </div>
+    {{/if}}
+
+    <!-- Messaggi di successo -->
+    {{#if successMessage}}
+    <div id="success-message" class="position-absolute alert alert-success w-50 text-center">
+        {{successMessage}}
+    </div>
+    {{/if}}
 
     <!-- Modulo per cambiare la password -->
     <div class="mt-4">

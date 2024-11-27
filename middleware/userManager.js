@@ -54,12 +54,30 @@ const getUser = async (username) => {
 // Funzione per aggiornare la password dell'utente
 const updateUser = async (req, res, next) => {
     const { oldPassword, newPassword, confirmPassword } = req.body;
-    if (newPassword !== confirmPassword) return res.status(400).send("Passwords do not match.");
+
+    // Verifica se le password coincidono
+    if (newPassword !== confirmPassword) {
+        req.session.errorMessage = "Passwords do not match.";
+        return res.redirect("/profile");
+    }
+
     const username = req.session.username;
     const user = await getUser(username);
-    if (user.password !== await hashPassword(oldPassword)) return res.status(400).send("Incorrect old password.");
+
+    // Verifica se la vecchia password è corretta
+    if (user.password !== await hashPassword(oldPassword)) {
+        req.session.errorMessage = "Incorrect old password.";
+        return res.redirect("/profile");
+    }
+
     const hashedPassword = await hashPassword(newPassword);
+
+    // Aggiorna la password nel database
     await users.updateOne({ username }, { $set: { password: hashedPassword } });
+
+    // Salva il messaggio di successo nella sessione
+    req.session.successMessage = 'Password updated Successfully!';
+
     next();
 };
 

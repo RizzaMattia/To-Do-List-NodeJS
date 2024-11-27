@@ -183,19 +183,25 @@ router.get("/profile", [checkSession], async (req, res) => {
     try {
         // Recupera i dettagli dell'utente dalla sessione o dal database
         const user = await getUser(req.session.username);
-        // Passa i dettagli dell'utente alla vista "profile"
-        res.render("profile", { user });
+        
+        // Recupera i messaggi di successo ed errore dalla sessione
+        const successMessage = req.session.successMessage || null;
+        const errorMessage = req.session.errorMessage || null;
+
+        // Reset dei messaggi nella sessione dopo averli passati alla vista
+        req.session.successMessage = null;
+        req.session.errorMessage = null;
+
+        // Passa i dettagli dell'utente e i messaggi alla vista "profile"
+        res.render("profile", { user, successMessage, errorMessage });
     } catch (error) {
-        // In caso di errore, reindirizza alla home
+        // In caso di errore, reindirizza alla home con una lista vuota
         res.render("home", { notes: [] });
     }
 });
-
 // Route per aggiornare la password dell'utente
 router.post("/profile/update-password", [checkSession, updateUser], async (req, res) => {
-    // Imposta il messaggio di successo per l'aggiornamento della password
-    req.session.successMessage = 'Password updated Successfully!';
-    res.redirect("/");
+    res.redirect("/profile");
 });
 
 // Route per eliminare l'account dell'utente
