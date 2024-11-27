@@ -6,7 +6,7 @@
 
  L'applicativo permette di creare e gestire delle note.
 
- ##Sviluppi futuri:
+ ## Sviluppi futuri:
 
  - Pagina dedicata a l'amministratore, con possibilità di gestione degli utenti.
  - Informazioni aggiuntive alle note
