@@ -1,0 +1,54 @@
+{{> homeHead}}
+
+{{> navbar}}
+
+<!-- Messaggi di successo -->
+{{#if successMessage}}
+<div id="success-message" class="position-absolute alert alert-success w-100 text-center">
+    {{successMessage}}
+</div>
+{{/if}}
+
+<!-- Saluto -->
+<div class="container mt-5">
+    <h1 class="display-4 text-secondary">Goodmorning, {{username}}!</h1>
+</div>
+
+<!-- Aggiungi una nuova nota -->
+<div class="container mt-5">
+    <a href="/add" class="btn btn-success btn-lg">
+        <i class="bi bi-plus-circle"></i> Add Note
+    </a>
+</div>
+
+<!-- Elenco delle note dell'utente -->
+<div class="container mt-5">
+    <h1>Your Notes</h1>
+    <div class="row">
+        <!-- Verifica se ci sono note -->
+        {{#if notes.length}}
+        <!-- Se l'array di note ha degli elementi, cicla attraverso di essi. -->
+        {{#each notes}}
+        <div class="col-md-4 mb-4">
+            <div class="card note-card">
+                <div class="card-body">
+                    <h5 class="card-title">{{truncate title}}</h5>
+
+                    <p class="card-text">{{truncate description}}</p>
+
+                    <a href="/note/{{_id}}" class="btn btn-primary">Details</a>
+
+                </div>
+            </div>
+        </div>
+        {{/each}}
+        {{else}}
+        <!-- Se non ci sono note, mostra il messaggio. -->
+        <p>You are free from commitments!.</p>
+        {{/if}}
+    </div>
+</div>
+
+</body>
+
+{{> footer}}

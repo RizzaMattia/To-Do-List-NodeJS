@@ -1,0 +1,28 @@
+body {
+    transition: 0.5s;
+    margin: 0;
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+}
+
+.add {
+    width: 5vw;
+    height: 5vw;
+    text-align: center;
+    align-items: center;
+    margin: 2vw;
+}
+
+.note-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.note-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+p,
+strong {
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}

@@ -1,0 +1,40 @@
+<body>
+    {{> loginHead}} <!-- Include il partial per la testa della pagina di login -->
+
+    <div class="login-container">
+        <!-- Verifica se c'è un messaggio di errore da mostrare -->
+        {{#if error}}
+        <div class="alert alert-danger w-100 text-center" id="message">
+            {{error}}
+        </div>
+        {{/if}}
+
+        <h2>Add</h2>
+
+        <!-- Form per aggiungere una nuova nota -->
+        <form method="post" action="">
+            <!-- Campo per il titolo della nota -->
+            <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" name="title" required maxlength="50">
+            </div>
+
+            <!-- Campo per la descrizione della nota -->
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea type="text" class="form-control" id="description" name="description" required
+                    maxlength="800"></textarea>
+            </div>
+
+            <!-- Bottone per inviare il form -->
+            <button type="submit" class="btn btn-primary w-40 border-1">Add</button>
+
+            <!-- Link per annullare l'operazione e tornare alla home -->
+            <div class="register-link">
+                <a href="/">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+    {{> footer}}
+</body>

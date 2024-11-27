@@ -1,0 +1,56 @@
+<body>
+    {{> loginHead}}
+    <div class="login-container">
+        <!-- Verifica se c'è un messaggio di errore da mostrare -->
+        {{#if error}}
+        <div class="alert alert-danger w-100 text-center" id="message">
+            {{error}}
+        </div>
+        {{/if}}
+
+        <h2>Sign Up</h2>
+
+        <!-- Form per la registrazione -->
+        <form method="post">
+            <!-- Campo per il nome utente -->
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+
+            <!-- Campo per la password -->
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+
+            <!-- Campo per la conferma della password -->
+            <div class="mb-3">
+                <label for="cpassword" class="form-label">Conferma Password</label>
+                <input type="password" class="form-control" id="cpassword" name="cpassword" required>
+            </div>
+
+            <!-- Campo per il nome -->
+            <div class="mb-3">
+                <label for="nome" class="form-label">Nome</label>
+                <input type="text" class="form-control" id="nome" name="nome" required>
+            </div>
+
+            <!-- Campo per il cognome -->
+            <div class="mb-3">
+                <label for="cognome" class="form-label">Cognome</label>
+                <input type="text" class="form-control" id="cognome" name="cognome" required>
+            </div>
+
+            <!-- Bottone per inviare il form -->
+            <button type="submit" class="btn btn-primary w-100">Registrati!</button>
+
+            <!-- Link per gli utenti già registrati, che vogliono fare il login -->
+            <div class="register-link">
+                <p>Alredy have an account? <a href="/login">Login here</a></p>
+            </div>
+        </form>
+    </div>
+
+    {{> footer}}
+</body>

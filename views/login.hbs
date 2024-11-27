@@ -1,0 +1,40 @@
+<body>
+    {{> loginHead}}
+
+    <div class="login-container">
+        <!-- Messaggi di errore o successo -->
+        {{#if error}}
+        <div class="alert alert-danger w-100 text-center" id="message">{{error}}</div>
+        {{/if}}
+        {{#if alert}}
+        <div class="alert alert-success w-100 text-center" id="message">{{alert}}</div>
+        {{/if}}
+
+        <h2>Login</h2>
+
+        <!-- Form per il login -->
+        <form method="post" action="">
+            <!-- Campo per l'username -->
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+
+            <!-- Campo per la password -->
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+
+            <!-- Pulsante di invio -->
+            <button type="submit" class="btn btn-primary w-100">Login</button>
+
+            <!-- Link per la registrazione -->
+            <div class="register-link m-3">
+                <p>New? <a href="/register">Sign Up here</a></p>
+            </div>
+        </form>
+    </div>
+
+    {{> footer}}
+</body>

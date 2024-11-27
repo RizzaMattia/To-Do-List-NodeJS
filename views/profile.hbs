@@ -1,0 +1,81 @@
+{{> homeHead}}
+{{> navbar}}
+
+<div class="container mt-5">
+    <!-- Titolo della pagina -->
+    <h1 class="display-4 text-secondary">Profile of {{user.username}}</h1>
+    <p class="lead text-muted">Manage your data</p>
+
+    <!-- Sezione informazioni utente -->
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">User info</h5>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <strong>Username:</strong> {{user.username}}
+                </li>
+                <li class="list-group-item">
+                    <strong>Name:</strong> {{user.nome}}
+                </li>
+                <li class="list-group-item">
+                    <strong>Surname:</strong> {{user.cognome}}
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Modulo per cambiare la password -->
+    <div class="mt-4">
+        <h5>Change your password</h5>
+        <form action="/profile/update-password" method="POST">
+            <div class="mb-3">
+                <label for="oldPassword" class="form-label">Old Password</label>
+                <input type="password" class="form-control" id="oldPassword" name="oldPassword" required>
+            </div>
+            <div class="mb-3">
+                <label for="newPassword" class="form-label">New Password</label>
+                <input type="password" class="form-control" id="newPassword" name="newPassword" required>
+            </div>
+            <div class="mb-3">
+                <label for="confirmPassword" class="form-label">Confirm new Password</label>
+                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Change Password</button>
+        </form>
+    </div>
+
+    <!-- Pulsanti per uscire o eliminare l'account -->
+    <div class="mt-4 w-100">
+        <a href="/logout" class="btn btn-secondary w-25">Exit</a>
+
+        <!-- Pulsante per aprire il modal di conferma eliminazione account -->
+        <form id="deleteForm" action="/profile/delete-account" method="POST" class="d-inline">
+            <button type="button" class="btn btn-danger ms-2" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                Delete Account
+            </button>
+        </form>
+    </div>
+
+    <!-- Modal di conferma eliminazione account -->
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteModalLabel">Confirm Deletion</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Testo di conferma eliminazione -->
+                    Are you sure you want to delete your account? This operation cannot be undone. All your associated
+                    data will be deleted as a result and it will not be possible to recover any data.
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-danger" form="deleteForm">Delete Account</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{{> footer}}

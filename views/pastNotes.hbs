@@ -1,0 +1,35 @@
+{{> homeHead}}
+{{> navbar}}
+
+<!-- Messaggi di successo -->
+{{#if successMessage}}
+<div id="success-message" class="position-absolute alert alert-success w-100 text-center">
+    {{successMessage}}
+</div>
+{{/if}}
+
+<div class="container mt-5">
+    <h1>Completed Notes</h1>
+
+    <div class="row">
+        <!-- Verifica se ci sono note completate -->
+        {{#if notes.length}}
+        <!-- Ciclo attraverso tutte le note completate -->
+        {{#each notes}}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{truncate title}}</h5>
+                    <p class="card-text">{{truncate description}}</p>
+                    <a href="/past/note/{{_id}}" class="btn btn-primary">Details</a>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+        {{else}} <!-- Se non ci sono note completate -->
+        <p>There are no completed notes.</p>
+        {{/if}}
+    </div>
+</div>
+
+{{> footer}}
